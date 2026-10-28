@@ -1,0 +1,50 @@
+import numpy as np
+
+def calculate(num):
+    if len(num) < 9:
+        raise ValueError("List must contain nine numbers.")
+    else:
+        # axis1
+        axis_11 = num[0:7:3]
+        axis_12 = num[1:8:3]
+        axis_13 = num[2:9:3]
+        # axis2
+        axis_21 = num[0:3:1]
+        axis_22 = num[3:6:1]
+        axis_23 = num[6:9:1]
+
+    return {
+        'mean': [
+            [sum(axis_11)/3, sum(axis_12)/3, sum(axis_13)/3],
+            [sum(axis_21)/3, sum(axis_22)/3, sum(axis_23)/3],
+            sum(num)/9
+        ],
+        'variance': [
+            [np.var(axis_11), np.var(axis_12), np.var(axis_13)],
+            [np.var(axis_21), np.var(axis_22), np.var(axis_23)],
+            np.var(num)
+        ],
+        'standard deviation': [
+            [np.std(axis_11), np.std(axis_12), np.std(axis_13)],
+            [np.std(axis_21), np.std(axis_22), np.std(axis_23)],
+            np.std(num)
+        ],
+        'max': [
+            [max(axis_11), max(axis_12), max(axis_13)],
+            [max(axis_21), max(axis_22), max(axis_23)],
+            max(num)
+        ],
+        'min': [
+            [min(axis_11), min(axis_12), min(axis_13)],
+            [min(axis_21), min(axis_22), min(axis_23)],
+            min(num)
+        ],
+        'sum': [
+            [sum(axis_11), sum(axis_12), sum(axis_13)],
+            [sum(axis_21), sum(axis_22), sum(axis_23)],
+            sum(num)
+        ]
+    }
+
+result = calculate([2, 6, 2, 8, 4, 0, 1, 5, 7])
+print(result)
